@@ -1,0 +1,19 @@
+both semaphore initially available
+0: 1
+1: 1
+rc: 0 
+reader loop:
+    wait(1)
+    rc++
+    if(rc==1) wait(0)
+    signal(1)
+    //reading shared data
+    wait(1)
+    rc--
+    if(rc==0)signal(0)
+    signal(1)
+
+writer loop:
+    wait(0)
+    //creates and writes shared data
+    signal(0)
